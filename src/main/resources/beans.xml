@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <!-- http://www.springframework.org/schema/beans/spring-beans.xsd" default-autowire="byName"> -->
+    <bean id="grade" class="com.longrise.spring.domain.Grade">
+        <!-- 常规属性注入 -->
+        <property name="gid" value="A1002" />
+        <property name="gname" value="四年级（2）班" />
+        <property name="numOfStudents" value="32" />
+    </bean>
+    <bean id="student" class="com.longrise.spring.domain.Student">
+        <property name="sid" value="9527" />
+        <property name="sname" value="小小书童" />
+        <!-- 数组属性注入 -->
+        <property name="hobbies">
+            <array>
+                <value>跑步</value>
+                <value>游泳</value>
+                <value>爬山</value>
+                <value>打球</value>
+                <value>睡觉</value>
+            </array>
+        </property>
+        <!-- list 属性注入 -->
+        <property name="games">
+            <list>
+                <value>lol</value>
+                <value>cf</value>
+                <value>dota</value>
+                <value>dnf</value>
+            </list>
+        </property>
+        <!-- map 属性注入 -->
+        <property name="cards">
+            <map>
+                <entry key="中国银行" value="4600223464615733" />
+                <entry key="建设银行" value="4702264894613131" />
+                <entry key="农业银行" value="4525674531389956" />
+                <entry key="招商银行" value="4825674531389956" />
+            </map>
+        </property>
+        <!-- set 属性注入 -->
+        <property name="stories">
+            <set>
+                <value>西游记</value>
+                <value>三国演义</value>
+                <value>水浒传</value>
+                <value>红楼梦</value>
+            </set>
+        </property>
+        <!-- 引用属性注入(对象注入) -->
+        <property name="grade" ref="grade" />
+        <!-- properties 属性注入 -->
+        <property name="info">
+            <props>
+                <prop key="age">18</prop>
+                <prop key="sex">女</prop>
+                <prop key="birth">2010-10-01</prop>
+            </props>
+        </property>
+    </bean>
+</beans>

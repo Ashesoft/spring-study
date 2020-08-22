@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!-- 别名定义 -->
+    <typeAliases>
+        <package name="com.longrise.mybatis.entity" />
+    </typeAliases>
+
+    <!-- 加载映射文件 -->
+    <mappers>
+        <!-- 通过 resource 方法一次加载一个映射文件 -->
+        <mapper resource="com/longrise/mybatis/mapper/DataMsgMapper.xml" />
+        <package name="com.longrise.mybatis.dao.DataMsgMapper" />
+    </mappers>
+</configuration>

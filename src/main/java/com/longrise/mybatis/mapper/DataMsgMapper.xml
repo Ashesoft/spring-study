@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.longrise.mybatis.mapper">
+    <select id="queryAll" resultType="DataMsg">
+        SELECT * FROM DATAMSG
+    </select>
+    <select id="queryOne" resultType="DataMsg" parameterType="int">
+        SELECT * FROM DATAMSG WHERE id=#{id}
+    </select>
+
+    <!-- useGeneratedKeys 会令 MyBatis 使用 JDBC 的 getGeneratedKeys 方法来取出由数据库内部生成的主键值并赋给传入实体 -->
+    <insert id="addOne" parameterType="DataMsg" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO DATAMSG (msg) VALUES (#{msg})
+    </insert>
+
+    <update id="postOne" parameterType="DataMsg">
+        UPDATE DATAMSG SET msg=#{msg} WHERE id=#{id}
+    </update>
+
+    <delete id="rmvOne" parameterType="int">
+        DELETE FROM DATAMSG WHERE id=#{id}
+    </delete>
+    <!-- 将 sql 语句写错, 以此来测试事务 -->
+    <delete id="testRmove" parameterType="int">
+        DELETE FROMS DATAMSG WHERE id=#{id}
+    </delete>
+</mapper>

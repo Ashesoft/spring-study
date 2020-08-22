@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans.xsd    
+    http://www.springframework.org/schema/aop   
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 导入 aop 的命名空间 -->
+    <bean id="userService" class="com.longrise.spring.aop.service.impl.UserServiceImpl"/>
+    <bean id="boy" class="com.longrise.spring.aop.service.impl.BoyServiceImpl"/>
+    <bean id="girl" class="com.longrise.spring.aop.service.impl.GirlServiceImpl"/>
+    
+    <bean id="customLog" class="com.longrise.spring.aop.CustomLog" />
+    <!-- 开启自动切面功能 -->
+    <aop:aspectj-autoproxy/>
+</beans>

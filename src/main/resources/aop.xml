@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans        
+    http://www.springframework.org/schema/beans/spring-beans.xsd    
+    http://www.springframework.org/schema/aop   
+    http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 导入 aop 的命名空间 -->
+    <bean id="userService" class="com.longrise.spring.aop.service.impl.UserServiceImpl"/>
+    <bean id="boy" class="com.longrise.spring.aop.service.impl.BoyServiceImpl"/>
+    <bean id="girl" class="com.longrise.spring.aop.service.impl.GirlServiceImpl"/>
+    
+    <bean id="log" class="com.longrise.spring.aop.Log" />
+    <bean id="customLog" class="com.longrise.spring.aop.CustomLog" />
+    <aop:config>
+        <!-- 配置切入点 -->
+        <aop:pointcut id="pointcut" expression="execution(* com.longrise.spring.aop.service.impl.UserServiceImpl.*(..))" />
+        <!-- 配置切入点所要执行的操作 -->
+        <aop:advisor advice-ref="log" pointcut-ref="pointcut" />
+        <!-- 自定义类, 不需 aop 相关的接口 -->
+        <aop:aspect ref="customLog">
+            <aop:pointcut id="pointcut1" expression="execution(* com.longrise.spring.aop.service.impl.BoyServiceImpl.*(..))" />
+            <aop:before method="first" pointcut-ref="pointcut1" />
+            <aop:after method="last" pointcut-ref="pointcut1" />
+            <aop:pointcut id="pointcut2" expression="execution(* com.longrise.spring.aop.service.impl.GirlServiceImpl.*(..))" />
+            <aop:before method="first" pointcut-ref="pointcut2" />
+            <aop:after method="last" pointcut-ref="pointcut2" />
+        </aop:aspect>
+    </aop:config>
+</beans>
